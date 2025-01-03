@@ -9,6 +9,7 @@ class SlotMachine {
 	public:
 
 		void menuPage();
+		void instructionPage();
 
 	private:
 };

@@ -23,6 +23,7 @@ int main() {
 				break;
 
 			case 4:
+				slm.instructionPage();
 				break;
 
 			case 5:
