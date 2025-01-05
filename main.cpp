@@ -2,10 +2,10 @@
 
 int main() {
 
-	SlotMachine slm;
+	SlotMachine obj;
 	
 	int option;
-	slm.menuPage();
+	obj.menuPage();
 
 
 	std::cout << "Select number from 1-4" << std::endl;
@@ -17,16 +17,19 @@ int main() {
 				break;
 
 			case 2:
+				obj.freeMoneyPage();
 				break;
 
 			case 3:
+				obj.balancePage();
 				break;
 
 			case 4:
-				slm.instructionPage();
+				obj.instructionPage();
 				break;
 
 			case 5:
+				std::cout << "You have exited the game!" << std::endl;
 				break;
 
 			default:

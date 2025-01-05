@@ -10,8 +10,12 @@ class SlotMachine {
 
 		void menuPage();
 		void instructionPage();
+		void balancePage();
+		void freeMoneyPage();
 
 	private:
+		int randomNumber;
+
 };
 
 #endif

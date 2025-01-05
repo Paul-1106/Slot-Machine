@@ -1,5 +1,6 @@
 #include "slotMachine.h"
 
+int balance = 100;
 
 void SlotMachine::menuPage() {
 	std::cout << "******************************" << std::endl;
@@ -11,6 +12,46 @@ void SlotMachine::menuPage() {
 	std::cout << "* 4. Instructions            *" << std::endl;
 	std::cout << "* 5. Exit the Game           *" << std::endl;
 	std::cout << "******************************" << std::endl;
+}
+
+void SlotMachine::freeMoneyPage() {
+	int randomNumber = rand() % 10 + 1;
+	int freeMoney = 100;
+	int guess;
+
+	std::cout << "Guess the right number from 1 to 10." << std::endl;
+	std::cout << "You will be rewarded from $10 to $100 depends on the amount of tries." << std::endl << std::endl;
+
+	do {
+		std::cin >> guess;
+
+		if (guess > randomNumber || guess < randomNumber) {
+			std::cout << "Incorrect Number" << std::endl;
+			freeMoney -= 10;
+		}
+		else {
+			std::cout << "Correct Number" << std::endl;
+		}
+
+	} while (guess != randomNumber);
+	
+	if (freeMoney <= 0) {
+		std::cout << "Sorry, you have been taken way too many tries. Please try again." << std::endl;
+	}
+	else if (freeMoney > 0 && freeMoney < 100) {
+		std::cout << "Congrats! You have been rewarded: +$" << freeMoney << std::endl;
+	}
+	else {
+		std::cout << "Congrats! You have been rewarded: +$" << freeMoney << std::endl;
+		std::cout << "PERFECT GUESS!" << std::endl;
+	}
+	
+	balance = freeMoney + balance;
+	std::cout << "Now you have $" << balance << " in your balance." << std::endl;
+}
+
+void SlotMachine::balancePage() {
+	std::cout << "Your Balance:\n" << "$" << balance << std::endl;
 }
 
 void SlotMachine::instructionPage() {
