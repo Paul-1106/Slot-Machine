@@ -14,6 +14,7 @@ int main() {
 		std::cin >> option;
 		switch (option) {
 			case 1:
+				obj.slotMachinePage();
 				break;
 
 			case 2:

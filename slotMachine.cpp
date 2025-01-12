@@ -14,6 +14,68 @@ void SlotMachine::menuPage() {
 	std::cout << "******************************" << std::endl;
 }
 
+void SlotMachine::slotMachinePage() {
+	int payBalance;
+	srand(time(0));
+
+	if (balance >= 100) {
+		std::cout << "How much you want to bet?" << std::endl;
+		std::cin >> payBalance;
+
+		if (payBalance >= 100) {
+			payBalance -= balance;
+			std::cout << "You have bet $" << payBalance << std::endl;
+
+			std::vector<std::pair<std::string, double>> symbols = {
+				{"Cherry", 0.45},
+				{"Strawberry", 0.40},
+				{"Orange", 0.38},
+				{"Lemon", 0.35},
+				{"Grape", 0.32},
+				{"Plum", 0.30},
+				{"Bell", 0.25},
+				{"Watermelon", 0.22},
+				{"Jackpot!", 0.05},
+				{"Diamond", 0.03},
+				{"SEVEN", 0.02}
+			};
+
+			std::vector<std::string> reel;
+			for (const auto& symbol : symbols) {
+				int rarity = static_cast<int>(symbol.second * 277);
+				for (int i = 0; i < rarity; i++) {
+					reel.push_back(symbol.first);
+				}
+			}
+
+			int randIndex1 = rand() % reel.size();
+			int randIndex2 = rand() % reel.size();
+			int randIndex3 = rand() % reel.size();
+
+			std::cout << reel[randIndex1] << " | " << reel[randIndex2] << " | " << reel[randIndex3] << std::endl;
+
+			if (reel[randIndex1] == reel[randIndex2] && reel[randIndex2] == reel[randIndex3]) {
+				std::cout << " " << std::endl;
+
+			}
+			else if (reel[randIndex1] == reel[randIndex2] || reel[randIndex1] == reel[randIndex3] || reel[randIndex2] == reel[randIndex3]) {
+				std::cout << " " << std::endl;
+			}
+			else {
+				std::cout << "You have lost your bet." << std::endl;
+			}
+
+		}
+		else {
+			std::cout << "You need to spend at least $100 to spin the slot machine." << std::endl;
+			std::cin >> payBalance;
+		}
+	}
+	else {
+		std::cout << "You do not have access to spin the slot machine because your balance is lower than $100." << std::endl;
+	}
+}
+
 void SlotMachine::freeMoneyPage() {
 	int randomNumber = rand() % 10 + 1;
 	int freeMoney = 100;

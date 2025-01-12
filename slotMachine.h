@@ -4,11 +4,15 @@
 #include <iostream>
 #include <vector>
 #include <random>
+#include <string>
+#include <ctime>
+#include <cstdlib>
 
 class SlotMachine {
 	public:
 
 		void menuPage();
+		void slotMachinePage();
 		void instructionPage();
 		void balancePage();
 		void freeMoneyPage();
