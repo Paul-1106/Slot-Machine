@@ -1,6 +1,6 @@
 #include "slotMachine.h"
 
-int balance = 100;
+int balance = 500;
 
 void SlotMachine::menuPage() {
 	std::cout << "******************************" << std::endl;
@@ -16,17 +16,19 @@ void SlotMachine::menuPage() {
 
 void SlotMachine::slotMachinePage() {
 	int payBalance;
+	int rewardBalance;
+	int jackpotBalance;
 	srand(time(0));
 
-	if (balance >= 100) {
+	if (balance >= 100) { // If the user has at least $100
 		std::cout << "How much you want to bet?" << std::endl;
 		std::cin >> payBalance;
 
 		if (payBalance >= 100) {
-			payBalance -= balance;
+			balance -= payBalance;
 			std::cout << "You have bet $" << payBalance << std::endl;
 
-			std::vector<std::pair<std::string, double>> symbols = {
+			std::vector<std::pair<std::string, double>> symbols = { // The weight of each symbol (rarity).
 				{"Cherry", 0.45},
 				{"Strawberry", 0.40},
 				{"Orange", 0.38},
@@ -52,17 +54,134 @@ void SlotMachine::slotMachinePage() {
 			int randIndex2 = rand() % reel.size();
 			int randIndex3 = rand() % reel.size();
 
+			std::cout << "****************************" << std::endl;
 			std::cout << reel[randIndex1] << " | " << reel[randIndex2] << " | " << reel[randIndex3] << std::endl;
+			std::cout << "****************************" << std::endl;
 
 			if (reel[randIndex1] == reel[randIndex2] && reel[randIndex2] == reel[randIndex3]) {
-				std::cout << " " << std::endl;
+				if (reel[randIndex1] == "Cherry" && reel[randIndex2] == "Cherry" && reel[randIndex3] == "Cherry") {
+					rewardBalance = payBalance * 1.5;
+					std::cout << "[WIN] You have been rewarded $" << rewardBalance << std::endl;
+					balance += rewardBalance;
+				}
+				if (reel[randIndex1] == "Strawberry" && reel[randIndex2] == "Strawberry" && reel[randIndex3] == "Strawberry") {
+					rewardBalance = payBalance * 2;
+					std::cout << "[WIN] You have been rewarded $" << rewardBalance << std::endl;
+					balance += rewardBalance;
+				}
+				if (reel[randIndex1] == "Orange" && reel[randIndex2] == "Orange" && reel[randIndex3] == "Orange") {
+					rewardBalance = payBalance * 3;
+					std::cout << "[WIN] You have been rewarded $" << rewardBalance << std::endl;
+					balance += rewardBalance;
+				}
+				if (reel[randIndex1] == "Lemon" && reel[randIndex2] == "Lemon" && reel[randIndex3] == "Lemon") {
+					rewardBalance = payBalance * 6;
+					std::cout << "[WIN] You have been rewarded $" << rewardBalance << std::endl;
+					balance += rewardBalance;
+				}
+				if (reel[randIndex1] == "Grape" && reel[randIndex2] == "Grape" && reel[randIndex3] == "Grape") {
+					rewardBalance = payBalance * 8.25;
+					std::cout << "[WIN] You have been rewarded $" << rewardBalance << std::endl;
+					balance += rewardBalance;
+				}
+				if (reel[randIndex1] == "Plum" && reel[randIndex2] == "Plum" && reel[randIndex3] == "Plum") {
+					rewardBalance = payBalance * 9;
+					std::cout << "[WIN] You have been rewarded $" << rewardBalance << std::endl;
+					balance += rewardBalance;
+				}
+				if (reel[randIndex1] == "Bell" && reel[randIndex2] == "Bell" && reel[randIndex3] == "Bell") {
+					rewardBalance = payBalance * 12.5;
+					std::cout << "[WIN] You have been rewarded $" << rewardBalance << std::endl;
+					balance += rewardBalance;
+				}
+				if (reel[randIndex1] == "Watermelon" && reel[randIndex2] == "Watermelon" && reel[randIndex3] == "Watermelon") {
+					rewardBalance = payBalance * 15;
+					std::cout << "[WIN] You have been rewarded $" << rewardBalance << std::endl;
+					balance += rewardBalance;
+				}
+				if (reel[randIndex1] == "Jackpot!" && reel[randIndex2] == "Jackpot!" && reel[randIndex3] == "Jackpot!") {
+					jackpotBalance = payBalance * 75;
+					rewardBalance = pow(2.5, jackpotBalance);
+					std::cout << "[JACKPOT!] You have been rewarded $" << rewardBalance << std::endl;
+					balance += rewardBalance;
+				}
+				if (reel[randIndex1] == "Diamond" && reel[randIndex2] == "Diamond" && reel[randIndex3] == "Diamond") {
+					jackpotBalance = payBalance * 500;
+					rewardBalance = pow(7.5, jackpotBalance);
+					std::cout << "[JACKPOT!] You have been rewarded $" << rewardBalance << std::endl;
+					balance += rewardBalance;
+				}
+				if (reel[randIndex1] == "SEVEN" && reel[randIndex2] == "SEVEN" && reel[randIndex3] == "SEVEN") {
+					jackpotBalance = payBalance * 7777;
+					rewardBalance = pow(777, jackpotBalance);
+					std::cout << "[JACKPOT!] You have been rewarded $" << rewardBalance << std::endl;
+					balance += rewardBalance;
+				}
 
 			}
 			else if (reel[randIndex1] == reel[randIndex2] || reel[randIndex1] == reel[randIndex3] || reel[randIndex2] == reel[randIndex3]) {
-				std::cout << " " << std::endl;
+				if ((reel[randIndex1] == "Cherry" && reel[randIndex2] == "Cherry") || (reel[randIndex2] == "Cherry" && reel[randIndex3] == "Cherry")
+				|| (reel[randIndex1] == "Cherry" && reel[randIndex3] == "Cherry")) {
+						rewardBalance = payBalance * 0.5;
+						std::cout << "[WIN] You have been rewarded $" << rewardBalance << std::endl;
+						balance += rewardBalance;
+				}
+				else if (reel[randIndex1] == "Strawberry" || reel[randIndex2] == "Strawberry" || reel[randIndex3] == "Strawberry") {
+						rewardBalance = payBalance * 1;
+						std::cout << "[WIN] You have been rewarded $" << rewardBalance << std::endl;
+						balance += rewardBalance;
+				}
+				else if (reel[randIndex1] == "Orange" || reel[randIndex2] == "Orange" || reel[randIndex3] == "Orange") {
+						rewardBalance = payBalance * 1.5;
+						std::cout << "[WIN] You have been rewarded $" << rewardBalance << std::endl;
+						balance += rewardBalance;
+				}
+				else if (reel[randIndex1] == "Lemon" || reel[randIndex2] == "Lemon" || reel[randIndex3] == "Lemon") {
+						rewardBalance = payBalance * 3;
+						std::cout << "[WIN] You have been rewarded $" << rewardBalance << std::endl;
+						balance += rewardBalance;
+				}
+				else if (reel[randIndex1] == "Grape" || reel[randIndex2] == "Grape" || reel[randIndex3] == "Grape") {
+						rewardBalance = payBalance * 4;
+						std::cout << "[WIN] You have been rewarded $" << rewardBalance << std::endl;
+						balance += rewardBalance;
+				}
+				else if (reel[randIndex1] == "Plum" || reel[randIndex2] == "Plum" || reel[randIndex3] == "Plum") {
+						rewardBalance = payBalance * 4.5;
+						std::cout << "[WIN] You have been rewarded $" << rewardBalance << std::endl;
+						balance += rewardBalance;
+				}
+				else if (reel[randIndex1] == "Bell" || reel[randIndex2] == "Bell" || reel[randIndex3] == "Bell") {
+						rewardBalance = payBalance * 5.5;
+						std::cout << "[WIN] You have been rewarded $" << rewardBalance << std::endl;
+						balance += rewardBalance;
+				}
+				else if (reel[randIndex1] == "Watermelon" || reel[randIndex2] == "Watermelon" || reel[randIndex3] == "Watermelon") {
+						rewardBalance = payBalance * 6.5;
+						std::cout << "[WIN] You have been rewarded $" << rewardBalance << std::endl;
+						balance += rewardBalance;
+				}
+				else if (reel[randIndex1] == "Jackpot!" || reel[randIndex2] == "Jackpot!" || reel[randIndex3] == "Jackpot") {
+						jackpotBalance = payBalance * 25;
+						rewardBalance = pow(2, jackpotBalance);
+						std::cout << "[JACKPOT!] You have been rewarded $" << rewardBalance << std::endl;
+						balance += rewardBalance;
+				}
+				else if (reel[randIndex1] == "Diamond" || reel[randIndex2] == "Diamond" || reel[randIndex3] == "Diamond") {
+						jackpotBalance = payBalance * 150;
+						rewardBalance = pow(4.5, jackpotBalance);
+						std::cout << "[JACKPOT!] You have been rewarded $" << rewardBalance << std::endl;
+						balance += rewardBalance;
+				}
+				else if (reel[randIndex1] == "SEVEN" || reel[randIndex2] == "SEVEN" || reel[randIndex3] == "SEVEN") {
+						jackpotBalance = payBalance * 777;
+						rewardBalance = pow(7, jackpotBalance);
+						std::cout << "[JACKPOT!] You have been rewarded $" << rewardBalance << std::endl;
+						balance += rewardBalance;
+				}
 			}
 			else {
-				std::cout << "You have lost your bet." << std::endl;
+				std::cout << "[LOSE] You have lost your bet." << std::endl;
 			}
 
 		}
