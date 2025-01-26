@@ -34,7 +34,9 @@ int main() {
 				break;
 
 			default:
-				break;
+				std::cout << "Please enter a valid option from 1 - 5" << std::endl;
+				std::cin.clear();
+				std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		}
 	} while (option != 5);
 
