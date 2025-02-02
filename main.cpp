@@ -5,6 +5,7 @@ int main() {
 	SlotMachine obj;
 	
 	int option;
+	std::string mPage;
 	obj.menuPage();
 
 
