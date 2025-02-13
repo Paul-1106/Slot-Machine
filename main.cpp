@@ -9,7 +9,7 @@ int main() {
 	obj.menuPage();
 
 
-	std::cout << "Select number from 1-4" << std::endl;
+	std::cout << "Select number from 1-4 or 9 to exit." << std::endl;
 
 	do {
 		std::cin >> option;
@@ -29,17 +29,21 @@ int main() {
 			case 4:
 				obj.instructionPage();
 				break;
-
+			
 			case 5:
+				obj.menuPage();
+				break;
+
+			case 9:
 				std::cout << "You have exited the game!" << std::endl;
 				break;
 
 			default:
-				std::cout << "Please enter a valid option from 1 - 5" << std::endl;
+				std::cout << "Please enter a valid option from 1 - 4 or 9 to exit" << std::endl;
 				std::cin.clear();
 				std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		}
-	} while (option != 5);
+	} while (option != 9);
 
 	return 0;
 

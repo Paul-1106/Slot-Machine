@@ -1,6 +1,6 @@
 #include "slotMachine.h"
 
-int balance = 500;
+double balance = 500;
 
 void SlotMachine::menuPage() {
 	std::cout << "******************************" << std::endl;
@@ -10,14 +10,15 @@ void SlotMachine::menuPage() {
 	std::cout << "* 2. Free Money              *" << std::endl;
 	std::cout << "* 3. My Balance              *" << std::endl;
 	std::cout << "* 4. Instructions            *" << std::endl;
-	std::cout << "* 5. Exit the Game           *" << std::endl;
+	std::cout << "* 5. Review the Menu Page    *" << std::endl;
+	std::cout << "* 9. Exit                    *" << std::endl;
 	std::cout << "******************************" << std::endl;
 }
 
 void SlotMachine::slotMachinePage() {
-	int payBalance;
-	int rewardBalance;
-	int jackpotBalance;
+	double payBalance;
+	double rewardBalance;
+	double jackpotBalance;
 	std::string goBack;
 	srand(time(0));
 
@@ -38,14 +39,14 @@ void SlotMachine::slotMachinePage() {
 				{"Plum", 0.30},
 				{"Bell", 0.25},
 				{"Watermelon", 0.22},
-				{"Jackpot!", 0.05},
-				{"Diamond", 0.03},
+				{"Jackpot!", 0.08},
+				{"Diamond", 0.05},
 				{"SEVEN", 0.02}
 			};
 
 			std::vector<std::string> reel;
 			for (const auto& symbol : symbols) {
-				int rarity = static_cast<int>(symbol.second * 277);
+				int rarity = static_cast<int>(symbol.second * 282);
 				for (int i = 0; i < rarity; i++) {
 					reel.push_back(symbol.first);
 				}
@@ -207,12 +208,12 @@ void SlotMachine::slotMachinePage() {
 		}
 		else {
 			std::cout << "You need to spend at least $100 to spin the slot machine." << std::endl;
-			std::cin >> payBalance;
 		}
 	}
 	else {
 		std::cout << "You do not have access to spin the slot machine because your balance is lower than $100." << std::endl;
 	}
+	std::cout << "Type '5' to go back to the menu page." << std::endl;
 }
 
 void SlotMachine::freeMoneyPage() {
@@ -250,7 +251,7 @@ void SlotMachine::freeMoneyPage() {
 		std::cout << "PERFECT GUESS!" << std::endl;
 	}	
 	balance = freeMoney + balance;
-	std::cout << "Type 'back' to review the menu page." << std::endl;
+	std::cout << "Type '5' to review the menu page." << std::endl;
 }
 
 void SlotMachine::balancePage() {
@@ -281,5 +282,5 @@ void SlotMachine::instructionPage() {
 	std::cout << "- If you have less than $100 in your balance, go to option two to get free money." << std::endl;
 	std::cout << "- When you go to the free money section, you will begin to play a random number game." << std::endl;
 	std::cout << "- Depends on the amount of tries you guess the number, you will win at a range from $10 - $100" << std::endl << std::endl;
-	std::cout << "Type 'back' to review the menu page." << std::endl;
+	std::cout << "Type '5' to review the menu page." << std::endl;
 }
